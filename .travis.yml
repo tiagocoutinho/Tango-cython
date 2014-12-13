@@ -21,12 +21,14 @@ env:
 
 before_install:
     - REDIRECT_TO=/dev/stdout # change to /dev/null to silence Travis
-    - travis_retry sudo apt-get -qq -y install libtango
+    - if [ "${DEPS}" == "full" ]; then
+        travis_retry sudo apt-get -qq -y install libtango;
+      fi;
 
 install:
     travis_retry sudo apt-get -qq -y install python-numpy python-nose python-setuptools
 
     - if [ "${PYTHON}" == "2.6" ]; then
         pip install -q unittest2;
-      fi
+      fi;
     
