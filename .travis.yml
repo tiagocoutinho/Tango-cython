@@ -19,4 +19,4 @@ env:
 - PYTHON=3.4 DEPS=minimal TEST=extra # test file sizes, style, line endings
 before_install:
 - REDIRECT_TO=/dev/stdout # change to /dev/null to silence Travis
-travis_retry sudo apt-get -qq -y install libtango;
+travis_retry sudo apt-get -qq -y install libtango
