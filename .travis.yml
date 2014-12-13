@@ -21,7 +21,7 @@ env:
 
 before_install:
     - REDIRECT_TO=/dev/stdout # change to /dev/null to silence Travis
-    travis_retry sudo apt-get -qq -y install libtango
+    - travis_retry sudo apt-get -qq -y install libtango
 
 install:
     travis_retry sudo apt-get -qq -y install python-numpy python-nose python-setuptools
