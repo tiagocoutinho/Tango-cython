@@ -24,7 +24,4 @@ before_install:
 install:
     travis_retry sudo apt-get -qq -y install python-numpy
 
-    - if [ "${PYTHON}" == "2.6" ]; then
-        pip install -q python-unittest2;
-      fi;
     
