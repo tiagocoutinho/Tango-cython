@@ -18,7 +18,7 @@ env:
 before_install:
     - REDIRECT_TO=/dev/stdout # change to /dev/null to silence Travis
     - if [ "${DEPS}" == "full" ]; then
-        travis_retry sudo apt-get -qq -y install libtango8;
+        travis_retry sudo apt-get -qq -y install libtango7;
       fi;
 
 install:
