@@ -16,12 +16,11 @@ env:
     - PYTHON=3.4 DEPS=full
 
 before_install:
-    - REDIRECT_TO=/dev/stdout # change to /dev/null to silence Travis
     - if [ "${DEPS}" == "full" ]; then
         travis_retry sudo apt-get -qq -y install libtango7;
       fi;
 
-install:
-    travis_retry sudo apt-get -qq -y install python-numpy
+#install:
+#    travis_retry sudo apt-get -qq -y install python-numpy
 
     
