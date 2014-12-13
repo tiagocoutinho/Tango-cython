@@ -23,4 +23,5 @@ before_install:
 #install:
 #    travis_retry sudo apt-get -qq -y install python-numpy
 
-    
+script:
+    # empty
