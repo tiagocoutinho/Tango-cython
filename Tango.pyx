@@ -21,13 +21,18 @@ cdef class Database:
             db = new Tango.cDatabase(file)
         self.__this = db
 
-    def __cinit__(self, string &name=None, int port=None):
-        if name == None:
-            self.__cinit0__()
-        elif port == None:
-            self.__cinit1__(name)
-        else:
-            self.__cinit2__(name, port)
+#    def __cinit__(self, string &name=None, int port=None):
+#        if name == None:
+#            self.__cinit0__()
+#        elif port == None:
+#            self.__cinit1__(name)
+#        else:
+#            self.__cinit2__(name, port)
+
+    def __cinit__(self):
+        with nogil:
+            db = new Tango.cDatabase()
+        self.__this = db
 
     def __dealloc__(self):
         del self.__this
