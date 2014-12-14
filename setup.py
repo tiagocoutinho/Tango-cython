@@ -4,10 +4,6 @@ from distutils.core import setup
 from distutils.extension import Extension
 from Cython.Distutils import build_ext
 
-tango_root = os.environ["TANGO_ROOT"]
-tango_include = os.path.join(tango_root, "include", "tango")
-tango_lib = os.path.join(tango_root, "lib")
-
 ext_modules = [Extension("Tango",
                          ["Tango.pyx"],
                          language='c++',
