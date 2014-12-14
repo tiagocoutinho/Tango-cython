@@ -6,7 +6,7 @@ python:
   - "3.4"
 
 before_install:
-    - travis_retry sudo apt-get update -qq
+    - travis_retry sudo apt-get update -qq;
     - travis_retry sudo apt-get -y install libtango7;
     - travis_retry sudo apt-get -y install libtango7-devel;
 
