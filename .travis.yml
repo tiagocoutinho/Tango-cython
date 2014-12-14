@@ -11,4 +11,6 @@ install:
     - travis_retry sudo apt-get -qq -y install python-numpy;
     - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then pip install unittest2; fi
 
-script: nosetests
+script:
+    - python setup.py build
+    - nosetests
