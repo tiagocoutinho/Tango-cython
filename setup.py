@@ -18,7 +18,12 @@ def check_lib(name, version):
         raise RuntimeError("requires lib{0} {1} ".format(name, version))
     return pkgconfig.parse(name)
 
-libtango = check_lib("tango", __LIBTANGO_VERSION)
+try:
+    libtango = check_lib("tango", __LIBTANGO_VERSION)
+except RuntimeError as e:
+    print("Error: {0}.".format(e))
+    libtango = dict(include_dirs=['/usr/include', '/usr/include/tango'],
+                    library_dirs=['/usr/lib'])
 
 ext_modules = [Extension("Tango",
                          ["Tango.pyx"],
