@@ -11,7 +11,7 @@ __LIBTANGO_VERSION = ">=7.0"
 def check_lib(name, version):
     lib_installed = pkgconfig.exists(name)
     if not lib_installed:
-        raise Runtimerror("lib{0} not installed".format(name))
+        raise RuntimeError("lib{0} not installed".format(name))
 
     lib_min = pkgconfig.installed(name, version)
     if not lib_min:
