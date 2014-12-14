@@ -6,11 +6,13 @@ python:
   - "3.4"
 
 before_install:
+    - travis_retry sudo apt-get -qq -y install libtango7;
 
 install:
-    - travis_retry sudo apt-get -qq -y install python-numpy;
+    - pip install -r requirements.txt
     - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then pip install unittest2; fi
+    - python setup.py install
+    - pip install coveralls
 
-script:
-    - python setup.py build
-    - nosetests
+
+script: nosetests
