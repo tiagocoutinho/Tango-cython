@@ -6,10 +6,28 @@ cdef class Database:
 
     cdef Tango.cDatabase *__this
 
-    def __cinit__(self):
+    def __cinit0__(self):
         with nogil:
             db = new Tango.cDatabase()
         self.__this = db
+
+    def __cinit1__(self, string &name, int port):
+        with nogil:
+            db = new Tango.cDatabase(name, port)
+        self.__this = db
+
+    def __cinit2__(self, string &file):
+        with nogil:
+            db = new Tango.cDatabase(file)
+        self.__this = db
+
+    def __cinit__(self, string &name=None, int port=None):
+        if name == None:
+            self.__cinit0__()
+        elif port == None:
+            self.__cinit1__(name)
+        else:
+            self.__cinit2__(name, port)
 
     def __dealloc__(self):
         del self.__this
