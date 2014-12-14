@@ -1,10 +1,14 @@
 import os
+from functools import partial
 
 from distutils.core import setup
 from distutils.extension import Extension
 from Cython.Distutils import build_ext
 
 import pkgconfig
+
+this_dir = os.path.dirname(os.path.realpath(__file__))
+src_dir = os.path.join(this_dir, "tango")
 
 __LIBTANGO_VERSION = ">=7.0"
 
@@ -25,16 +29,22 @@ except RuntimeError as e:
     libtango = dict(include_dirs=['/usr/include', '/usr/include/tango'],
                     library_dirs=['/usr/lib'])
 
-ext_modules = [Extension("Tango",
-                         ["Tango.pyx"],
-                         language='c++',
+TangoExtension = partial(Extension, language='c++',
                          include_dirs=list(libtango['include_dirs']),
                          library_dirs=list(libtango['library_dirs']),
                          libraries=['tango'],
-                         extra_compile_args=['-std=c++0x'])]
+                         extra_compile_args=['-std=c++0x'])
+
+modules = "database", "deviceproxy"
+ext_modules = []
+
+for module in modules:
+    name = "tango." + module
+    ext_module = TangoExtension(name, [os.path.join(src_dir, name + ".pyx")]) 
+    ext_modules.append(ext_module)
 
 setup(
-  name = 'Tango',
+  name = 'tango',
   cmdclass = {'build_ext': build_ext},
   ext_modules = ext_modules
 )
