@@ -1,11 +1,14 @@
-cimport tango.deviceproxy	
+from libcpp.string cimport string
+from libcpp.vector cimport vector
+
+cimport deviceproxy
 	
 cdef class DeviceProxy:
-    cdef tango.deviceproxy.cDeviceProxy *__this
+    cdef deviceproxy.cDeviceProxy *__this
 
     def __cinit__(self, string &name):
         with nogil:
-            proxy = new tango.deviceproxy.cDeviceProxy(name)
+            proxy = new deviceproxy.cDeviceProxy(name)
         self.__this = proxy
 
     def __dealloc__(self):

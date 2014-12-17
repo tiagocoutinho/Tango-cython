@@ -35,13 +35,7 @@ TangoExtension = partial(Extension, language='c++',
                          libraries=['tango'],
                          extra_compile_args=['-std=c++0x'])
 
-modules = "database", "deviceproxy"
-ext_modules = []
-
-for module in modules:
-    name = "tango." + module
-    ext_module = TangoExtension(name, [os.path.join(src_dir, name + ".pyx")]) 
-    ext_modules.append(ext_module)
+ext_modules = [TangoExtension("tango", [os.path.join(src_dir, "tango.pyx")])] 
 
 setup(
   name = 'tango',
