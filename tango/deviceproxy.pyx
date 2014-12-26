@@ -2,7 +2,7 @@ from libcpp.string cimport string
 from libcpp.vector cimport vector
 
 cimport deviceproxy
-	
+
 cdef class DeviceProxy:
     cdef deviceproxy.cDeviceProxy *__this
 
@@ -20,12 +20,19 @@ cdef class DeviceProxy:
         return s
 
     def name(self):
+        cdef string s
         with nogil:
             s = self.__this.name()
         return s
 
+    def get_attribute_list(self):
+        cdef vector[string]* s
+        with nogil:
+            s = self.__this.get_attribute_list()
+        result = []
+        for i in range(s.size()):
+            result.append(s[i])
+        return result
+
     def dev_name(self):
         return self.__this.dev_name()
-
-
-
