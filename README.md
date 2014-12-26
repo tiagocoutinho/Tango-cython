@@ -1,0 +1,1 @@
+https://api.travis-ci.org/tiagocoutinho/tango-cython.svg?branch=master
