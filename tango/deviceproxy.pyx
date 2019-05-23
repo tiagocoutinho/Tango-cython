@@ -5,6 +5,8 @@ from libcpp.vector cimport vector
 
 cimport deviceproxy
 
+GARBAGE = "just to avoid import error"
+
 cdef class DeviceProxy:
     cdef deviceproxy.cDeviceProxy *__this
 
